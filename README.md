@@ -8,24 +8,16 @@ Uma API simples em Go que permite consultar informações de temperatura com bas
 - Servidor HTTP simples e eficiente
 - Validação de formato de CEP
 
-## Pré-requisitos
-
-- Go 1.19 ou superior instalado
-- Conexão com a internet para consultas de temperatura
 
 ## Como executar
 
-Para iniciar o servidor, execute o seguinte comando no terminal:
+Acesse o servidor na url: 
+  ### https://googlecloud-3wgw77geaq-uc.a.run.app/
 
-```bash
-go run main.go
-```
-
-O servidor será iniciado na porta **8080** e ficará aguardando requisições.
 
 ## Endpoints
 
-### GET `/weather_from/{cep}`
+### GET `https://googlecloud-3wgw77geaq-uc.a.run.app/weather_from/{cep}`
 
 Retorna as informações de temperatura para o CEP fornecido.
 

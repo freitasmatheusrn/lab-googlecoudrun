@@ -24,7 +24,7 @@ func Find(cep CEP) (string, error) {
 	if err := cep.Validate(); err != nil {
 		return "", err
 	}
-	url := fmt.Sprintf("http://viacep.com.br/ws/%s/json/", cep)
+	url := fmt.Sprintf("https://viacep.com.br/ws/%s/json/", cep)
 	response, err := http.Get(url)
 	if err != nil {
 		return "", err
