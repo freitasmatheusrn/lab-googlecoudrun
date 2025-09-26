@@ -17,7 +17,7 @@ Acesse o servidor na url:
 
 ## Endpoints
 
-### GET `https://googlecloud-3wgw77geaq-uc.a.run.app/weather_from/{cep}`
+### GET `/weather_from/{cep}`
 
 Retorna as informações de temperatura para o CEP fornecido.
 
@@ -26,7 +26,7 @@ Retorna as informações de temperatura para o CEP fornecido.
 
 **Exemplo de uso:**
 ```
-GET http://localhost:8080/weather_from/01310100
+GET https://googlecloud-3wgw77geaq-uc.a.run.app/weather_from/01310100
 ```
 
 **Formato do CEP:**
