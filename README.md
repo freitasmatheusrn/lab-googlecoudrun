@@ -11,13 +11,13 @@ Uma API simples em Go que permite consultar informações de temperatura com bas
 
 ## Como executar
 
-Acesse o servidor na url: 
-  ### https://googlecloud-3wgw77geaq-uc.a.run.app/
+Faça um get request para: 
+  ### https://googlecloud-3wgw77geaq-uc.a.run.app/wheater_from/{cep}
 
 
 ## Endpoints
 
-### GET `/weather_from/{cep}`
+### GET `/wheater_from/{cep}`
 
 Retorna as informações de temperatura para o CEP fornecido.
 
