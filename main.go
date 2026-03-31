@@ -11,26 +11,42 @@ import (
 func GetTemperatures(w http.ResponseWriter, r *http.Request) {
 	cep := location.CEP(chi.URLParam(r, "cep"))
 	if cep == "" {
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("cep is empty"))
+		json.NewEncoder(w).Encode(map[string]any{
+			"status":  http.StatusBadRequest,
+			"message": "cep is empty",
+		})
 		return
 	}
 	err := cep.Validate()
 	if err != nil{
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		w.Write([]byte("invalid zip code:" + err.Error()))
+		json.NewEncoder(w).Encode(map[string]any{
+			"status":  http.StatusUnprocessableEntity,
+			"message": "invalid zipcode",
+		})
 		return
 	}
 	city, err := location.Find(cep)
 	if err != nil{
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte(err.Error()))
+		json.NewEncoder(w).Encode(map[string]any{
+			"status":  http.StatusNotFound,
+			"message": err.Error(),
+		})
 		return
 	}
 	temperatures, err := location.Temperatures(city)
 	if err != nil {
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(err.Error()))
+		json.NewEncoder(w).Encode(map[string]any{
+			"status":  http.StatusInternalServerError,
+			"message": err.Error(),
+		})
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")

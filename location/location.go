@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
-	"strconv"
 
 	"github.com/freitasmatheusrn/cloudRunLab/config"
 )
@@ -38,7 +37,7 @@ func Find(cep CEP) (string, error) {
 	var m map[string]string
 	json.Unmarshal(body, &m)
 	if _, notFound := m["erro"]; notFound {
-		return "", fmt.Errorf("can not find zipcode: %s", cep)
+		return "", fmt.Errorf("cannot find zipcode: %s", cep)
 	}
 
 	return m["localidade"], nil
@@ -68,13 +67,8 @@ func Temperatures(city string) (Temperature, error) {
 }
 
 func (c *CEP) Validate() error {
-	cep := regexp.MustCompile(`[^0-9a-zA-Z]`).ReplaceAllString(string(*c), "")
-	if len(cep) != 8 {
-		return errors.New("cep must be 8 numeric characters long")
-	}
-	if _, err := strconv.Atoi(cep); err != nil {
-		return errors.New("cep cannot contain letters")
-
+	if !regexp.MustCompile(`^\d{8}$`).MatchString(string(*c)) {
+		return errors.New("invalid zipcode")
 	}
 	return nil
 }
