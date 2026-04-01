@@ -11,6 +11,20 @@ Uma API simples em Go que permite consultar informações de temperatura com bas
 
 ## Como executar
 
+### Localmente via Docker
+
+```bash
+# Build da imagem
+docker build -t weather-api .
+
+# Executar o container
+docker run -p 8080:8080 weather-api
+```
+
+A API ficará disponível em `http://localhost:8080`.
+
+### Cloud Run
+
 Faça um get request para: 
   ### https://googlecloud-3wgw77geaq-uc.a.run.app/wheater_from/{cep}
 
